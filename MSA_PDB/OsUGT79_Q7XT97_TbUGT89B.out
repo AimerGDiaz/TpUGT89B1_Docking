@@ -1,0 +1,85 @@
+########################################
+# Program: needle
+# Rundate: Thu  9 Apr 2026 11:47:14
+# Commandline: needle
+#    -auto
+#    -stdout
+#    -asequence emboss_needle-I20260409-114710-0536-38754073-p1m.asequence
+#    -bsequence emboss_needle-I20260409-114710-0536-38754073-p1m.bsequence
+#    -datafile EBLOSUM62
+#    -gapopen 10.0
+#    -gapextend 0.5
+#    -endopen 10.0
+#    -endextend 0.5
+#    -aformat3 pair
+#    -sprotein1
+#    -sprotein2
+# Align_format: pair
+# Report_file: stdout
+########################################
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: TbUGT89B
+# 2: OsUGT79
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 528
+# Identity:     137/528 (25.9%)
+# Similarity:   210/528 (39.8%)
+# Gaps:         131/528 (24.8%)
+# Score: 355.5
+# 
+#
+#=======================================
+
+TbUGT89B           1 ---MSIPQT-----HLIAYPFPTS-GHIIPLIDLTKNLITRNINVTVLLT     41
+                        ||.|..     .::..|||.: ||..|::...:.|....:..|::.|
+OsUGT79            1 MGSMSTPAASANGGQVLLLPFPAAQGHTNPMLQFGRRLAYHGLRPTLVTT     50
+
+TbUGT89B          42 PSNQHLLPPNYSPLLQTLVLPSPQF---------PNPNQ---------NR     73
+                     .......||...|.....:  |..|         |:|.:         .|
+OsUGT79           51 RYVLSTTPPPGDPFRVAAI--SDGFDDASGMAALPDPGEYLRTLEAHGAR     98
+
+TbUGT89B          74 LIATI------------TFMHQHHYPIILQWARVHHLPPSAIIS-----D    106
+                     .:|.:            ..::..|.|...:.||...:..:|.:|     |
+OsUGT79           99 TLAELLLSEARAGRPARVLVYDPHLPWARRVARAAGVATAAFLSQPCAVD    148
+
+TbUGT89B         107 FFLGWTHLLARDLDVPRLVFSPSGAFALSISFSLWRDLPQNDNPDDPNSV    156
+                     ...|  .:.||.|.:|.......|.:|..:       |.....|||....
+OsUGT79          149 LIYG--EVCARRLALPVTPTDARGLYARGV-------LGVELGPDDVPPF    189
+
+TbUGT89B         157 VSFPNLPNSPFYPWWQISHLFRDKKVEQDWEMMRTMFLFNLDAWGVVFNS    206
+                     |:.|           :::..|.::.:||        |....|...|:.||
+OsUGT79          190 VAAP-----------ELTPAFCEQSIEQ--------FAGLEDDDDVLVNS    220
+
+TbUGT89B         207 FIDLEPAYFDHIKKELGH-ERVW---AVGPVLP---LDSGTEPEERGEA-    248
+                     |.||||       ||..: |..|   .:||.||   ||.|......... 
+OsUGT79          221 FSDLEP-------KEAAYMESTWRAKTIGPSLPSFYLDDGRLRSNTAYGF    263
+
+TbUGT89B         249 ----STVSCLELTTWLDKREDRSVVYVCFGSRTFLTTAEMDVLTSALELS    294
+                         |||.|:|   ||||:..||||.|.:|:.:....|:::.|.:.|..|
+OsUGT79          264 NLFRSTVPCME---WLDKQPPRSVVLVSYGTVSTFDVAKLEELGNGLCNS    310
+
+TbUGT89B         295 GVHFILSVRVPDERRVEEDCGKISSGFIERVRERGFVIQGWASQLVILGH    344
+                     |..|:..||..:|.       |:|....::..:||.::. :..||.:|.|
+OsUGT79          311 GKPFLWVVRSNEEH-------KLSVQLRKKCEKRGLIVP-FCPQLEVLAH    352
+
+TbUGT89B         345 RAVGAFLTHCGWNSVLEGLVSGVVMLTWPMGADQYTNAKLL---------    385
+                     :|.|.||:||||||.||.:|:||.::..|..|||.|.:|.:         
+OsUGT79          353 KATGCFLSHCGWNSTLEAIVNGVPLVAMPHWADQPTISKYVESLWGMGVR    402
+
+TbUGT89B         386 --VDQLGVAVQAAEGDEKIPEINDLVKVIKGSLGRTKE--RVRAEELRDA    431
+                       :|:.|: :|..|.:..|.|:.|         |..||  |..|..|...
+OsUGT79          403 VQLDKSGI-LQREEVERCIREVMD---------GDRKEDYRRNATRLMKK    442
+
+TbUGT89B         432 ALGAIKENGSSQKQLDALVKELNELKND    459
+                     |..:::|.|||.|.:.....:.:.    
+OsUGT79          443 AKESMQEGGSSDKNIAEFAAKYSN----    466
+
+
+#---------------------------------------
+#---------------------------------------

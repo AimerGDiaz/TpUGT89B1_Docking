@@ -153,28 +153,23 @@ modelled, which can be converted into R vector running in a bash
 terminal:
 
 ``` bash
-echo "atom id #1.2/B:1@O01 idatm_type O3
-atom id #1.2/B:1@C02 idatm_type Car
-atom id #1.2/B:1@C03 idatm_type Car
-atom id #1.2/B:1@C04 idatm_type Car
-atom id #1.2/B:1@CL05 idatm_type Cl
-atom id #1.2/B:1@C06 idatm_type Car
-atom id #1.2/B:1@C07 idatm_type Car
-atom id #1.2/B:1@C08 idatm_type Car
-atom id #1.2/B:1@C09 idatm_type C2
-atom id #1.2/B:1@C10 idatm_type C2
-atom id #1.2/B:1@C11 idatm_type C2
+echo "atom id #1.2/B:1@C20 idatm_type C3
+atom id #1.2/B:1@C13 idatm_type C2
 atom id #1.2/B:1@C12 idatm_type C2
-atom id #1.2/B:1@S13 idatm_type Sxd
-atom id #1.2/B:1@O14 idatm_type O3-
-atom id #1.2/B:1@C15 idatm_type Car
-atom id #1.2/B:1@C16 idatm_type Car
-atom id #1.2/B:1@CL17 idatm_type Cl
-atom id #1.2/B:1@C18 idatm_type Car
-atom id #1.2/B:1@C19 idatm_type Car
-atom id #1.2/B:1@O20 idatm_type O3
-atom id #1.2/B:1@C21 idatm_type Car
-atom id #1.2/B:1@C22 idatm_type Car" | awk '{gsub(/.*@/,"",$3);printf $3"\",\""}'
+atom id #1.2/B:1@C11 idatm_type C3
+atom id #1.2/B:1@C14 idatm_type C2
+atom id #1.2/B:1@C15 idatm_type C2
+atom id #1.2/B:1@O3 idatm_type O3
+atom id #1.2/B:1@C10 idatm_type C3
+atom id #1.2/B:1@C19 idatm_type C3
+atom id #1.2/B:1@C9 idatm_type C3
+atom id #1.2/B:1@C18 idatm_type C3
+atom id #1.2/B:1@C8 idatm_type C3
+atom id #1.2/B:1@C7 idatm_type C3
+atom id #1.2/B:1@C16 idatm_type C3
+atom id #1.2/B:1@C6 idatm_type C3
+atom id #1.2/B:1@C17 idatm_type C3
+atom id #1.2/B:1@O6 idatm_type O3" | awk '{gsub(/.*@/,"",$3);printf $3"\",\""}'
 ```
 
 TpUGT89B1 has 459 aa, Tl has 17 tokens while UDP 36.
@@ -267,25 +262,23 @@ highlight_residues <- TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$MinPAE >= 0.9,2]
 
 #TpUGT89B1_CP_DF$ResidueName <- gsub( "[0-9]+", "", TpUGT89B1_CP_DF$ResidueName)
 
-TpUGT89B1_CP_plot <-  ggplot(TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$MinPAE > 0,], aes(x = Residue, y = MinPAE ,  fill =Interaction)) +
-  scale_fill_viridis_d() +
+
+TpUGT89B1_CP_DF$Type <- gsub("TpUGT89B1_Tl", "Trichothecene" ,TpUGT89B1_CP_DF$Type)
+TpUGT89B1_CP_DF$Type <- gsub("TpUGT89B1_UDP", "UDP" ,TpUGT89B1_CP_DF$Type) 
+ligands <- c("Trichothecene" = "#448F20", "UDP" = "#3A3A1A" )
+TpUGT89B1_CP_plot <-  ggplot(TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$MinPAE > 0,], aes(x = Residue, y = MinPAE , fill  =Type)) +
+  scale_fill_manual(values = ligands) +
  geom_col() + 
-  geom_point( data = TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$MinPAE >=0.5 & TpUGT89B1_CP_DF$Type == "TpUGT89B1_Tl",], size = 8, pch = 21, bg = "black", col = 1 ) +
-  geom_text( aes(label =ifelse( MinPAE >= 0.5 & Type == "TpUGT89B1_Tl" , ResidueName , NA)), color = "white", size = 3) +
-    labs(title = "Contact probabilities UGT89B1 docking of Tl and UDP",
-         x = "UGT89B1 Residue", y = "Contact probabilities",
-         color = "Interaction") +  theme_bw(base_size = 20)  +
-   #geom_text_repel(aes(label =ifelse( MinPAE >= 0.9 , InterName , NA)), segment.size = 0.3) +
-  scale_x_continuous(breaks = seq(1, 459, by = 10)) + 
-     theme(axis.text.x = element_text(angle = 90, vjust = 1, hjust=1),plot.title = element_text(hjust = 0.5),legend.position = "bottom") + 
-  facet_grid(Type~., scales = "free_y") 
-  # keep defaults and add highlight_residues as extra breaks
- # scale_x_continuous(breaks = function(x) {
-    #unique(c(pretty(x), highlight_residues))
-  #})       
+  geom_point( data = TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$MinPAE >=0.5 & TpUGT89B1_CP_DF$Type == "Trichothecene",], size = 10, pch = 21, bg = "black", col = 1 ) +
+  geom_text( aes(label =ifelse( MinPAE >= 0.5 & Type == "Trichothecene" , ResidueName , NA)), color = "white", size = 3) +
+    labs(       x = "UGT89B1 Residue", y = "Contact probabilities") +  theme_bw(base_size = 30)  +
+  scale_x_continuous(breaks = seq(1, 459, by = 15)) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, hjust=1),legend.position = "none") + 
+  facet_grid(Type~.) 
+  
   ggsave(filename = "Figures/TpUGT89B1_Cp.pdf", plot = TpUGT89B1_CP_plot,device = "pdf", width=14, height=12)
   ggsave(filename = "Figures/TpUGT89B1_Cp.png", plot = TpUGT89B1_CP_plot,device = "png", width=14, height=12)
-  
+  #TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$Contact_Probability >= 0.5 & TpUGT89B1_CP_DF$Type == "Trichothecene",]
 colnames(TpUGT89B1_CP_DF) <-  c("Interaction",  "Residue","Contact_Probability",  "InteractResidue", "Type",        "Model"    ,    "ResidueName", "InterName") 
 
  write.csv(TpUGT89B1_CP_DF[TpUGT89B1_CP_DF$Contact_Probability >= 0.1,] , file =  "Results/TpUGT89B1_CP.txt",  row.names =F ) 
@@ -356,30 +349,59 @@ p_all <- cowplot::plot_grid(
     ggsave(filename = "Figures/UGT89B1_Domain_Annotation.png", plot = p_all,device = "png", width=14, height=4)
 ```
 
-# Evolutionary validation
+# Computational validation
+
+## Chimera distances
+
+``` bash
+
+mlp ; mlp key true ; hide #1.2 surfaces ; hide #1.3 surfaces ; transparency  #1.1 0 s
+
+select #1.1/a:174,a:137a:376,a:377 ; show sel atoms
+
+distance #1.1/a:137@CA #1.2/b@C14 ; distance #1.1/a:174@OG #1.2/b@O6 ; distance #1.1/a:376@O #1.2/b@C10 ; distance #1.1/a:377@N #1.2/b@C10
+~select
+save "~/Documents/GitHub/TpUGT89B1_Docking/Figures/TpUGT89B1_HydrophobicPocket.png" supersample 4 width 4000 height 4000
+save "~/Documents/GitHub/TpUGT89B1_Docking/Figures/TpUGT89B1_Docking-Hp.cxs" 
+```
+
+## Evolutionary conservation of binding residues
 
 <https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle/summary?jobId=emboss_needle-I20260409-113910-0511-5011325-p1m>
 <https://www.rcsb.org/3d-sequence/5TMD?assemblyId=1>
-<!-- Tl binding positions of  OsUGT79
-22,25,28,80,123,144,190,200,203,293,385
-143,144, absent in query, change to 140,150
 
-UDP binding of OsUGT79
-29,30,143,144,291,293,345,347,365,370,387--> <!--Tl initial --> python3
-aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out
-22,25,28,80,123,144,190,200,203,293,385 TtoQ <!--Tl  final --> python3
-aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out
-22,24,28,70,85,123,140,190,200,203,293,385 TtoQ
+``` bash
+# Tl binding positions of  OsUGT79
+#22,25,28,80,123,144,190,200,203,293,385
+#143,144, absent in query, change to 140,150
 
-<!--UDP initial -->
+# UDP binding of OsUGT79
+#29,30,143,144,291,293,345,347,365,370,387-->
+# Tl initial 
+python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 22,25,28,80,123,144,190,200,203,293,385 TtoQ 
+# Tl  final 
+python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 22,24,28,70,85,123,140,190,200,203,293,385 TtoQ
+python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out  129,133,137,140,174,176,376,377 QtoT
+```
 
-python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out
-29,30,143,144,291,293,345,347,365,370,387 TtoQ
+| seq1_name | seq2_name | direction | source_pos | equivalent_pos | source_aa | equivalent_aa | state      | query_pos | target_pos | query_aa | target_aa |
+|-----------|-----------|-----------|------------|----------------|-----------|---------------|------------|-----------|------------|----------|-----------|
+| TbUGT89B  | OsUGT79   | QtoT      | 129        | 169            | S         | R             | match      | 129       | 169        | S        | R         |
+| TbUGT89B  | OsUGT79   | QtoT      | 133        | 173            | A         | A             | match      | 133       | 173        | A        | A         |
+| TbUGT89B  | OsUGT79   | QtoT      | 137        | NA             | S         | \-            | query_only | 137       | NA         | S        | \-        |
+| TbUGT89B  | OsUGT79   | QtoT      | 140        | NA             | L         | \-            | query_only | 140       | NA         | L        | \-        |
+| TbUGT89B  | OsUGT79   | QtoT      | 174        | 196            | S         | T             | match      | 174       | 196        | S        | T         |
+| TbUGT89B  | OsUGT79   | QtoT      | 176        | 198            | L         | A             | match      | 176       | 198        | L        | A         |
+| TbUGT89B  | OsUGT79   | QtoT      | 376        | 384            | A         | A             | match      | 376       | 384        | A        | A         |
+| TbUGT89B  | OsUGT79   | QtoT      | 377        | 385            | D         | D             | match      | 377       | 385        | D        | D         |
 
-<!--UDP final -->
+``` bash
+# UDP initial 
+python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 29,30,143,144,291,293,345,347,365,370,387 TtoQ 
 
-python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out
-29,30,155,160,291,293,345,347,365,370,387 TtoQ
+# UDP final 
+ python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 29,30,155,160,291,293,345,347,365,370,387 TtoQ
+```
 
 # References
 

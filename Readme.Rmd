@@ -485,26 +485,47 @@ distance #1.1/a:137@CA #1.2/b@C14 ; distance #1.1/a:174@OG #1.2/b@O6 ; distance 
 ~select
 save "~/Documents/GitHub/TpUGT89B1_Docking/Figures/TpUGT89B1_HydrophobicPocket.png" supersample 4 width 4000 height 4000
 save "~/Documents/GitHub/TpUGT89B1_Docking/Figures/TpUGT89B1_Docking-Hp.cxs" 
-137 174 376 377 
 ```
+
+
+## Evolutionary conservation of binding residues
+
 
 https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle/summary?jobId=emboss_needle-I20260409-113910-0511-5011325-p1m
 https://www.rcsb.org/3d-sequence/5TMD?assemblyId=1
-<!-- Tl binding positions of  OsUGT79
-22,25,28,80,123,144,190,200,203,293,385
-143,144, absent in query, change to 140,150
 
-UDP binding of OsUGT79
-29,30,143,144,291,293,345,347,365,370,387-->
-<!--Tl initial -->
+```{bash, eval=F}
+# Tl binding positions of  OsUGT79
+#22,25,28,80,123,144,190,200,203,293,385
+#143,144, absent in query, change to 140,150
+
+# UDP binding of OsUGT79
+#29,30,143,144,291,293,345,347,365,370,387-->
+# Tl initial 
 python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 22,25,28,80,123,144,190,200,203,293,385 TtoQ 
-<!--Tl  final -->
+# Tl  final 
 python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 22,24,28,70,85,123,140,190,200,203,293,385 TtoQ
+python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out  129,133,137,140,174,176,376,377 QtoT
+```
 
-<!--UDP initial -->
+seq1_name | seq2_name | direction | source_pos | equivalent_pos | source_aa | equivalent_aa | state | query_pos | target_pos | query_aa | target_aa |
+ --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+TbUGT89B    |    OsUGT79 |QtoT  |  129  |   169 |    S   |    R     |  match  | 129 |    169   |  S   |    R|
+TbUGT89B     |   OsUGT79 |QtoT  |  133  |   173  |   A  |     A     |  match  | 133  |   173  |   A    |   A|
+TbUGT89B      |  OsUGT79 |QtoT  |  137  |   NA  |    S  |     -     |  query_only  |    137 |    NA   |   S     |  -|
+TbUGT89B    |    OsUGT79 |QtoT  |  140  |   NA   |   L  |     -     |  query_only |     140  |   NA   |   L    |   -|
+TbUGT89B    |    OsUGT79 |QtoT  |  174  |   196 |    S   |    T     |  match  | 174 |    196 |    S    |   T|
+TbUGT89B    |    OsUGT79 |QtoT  |  176  |   198  |   L  |     A     |  match  | 176  |   198  |   L    |   A|
+TbUGT89B    |    OsUGT79 |QtoT  |  376  |   384 |    A   |    A     |  match  | 376 |    384  |   A     |  A|
+TbUGT89B    |    OsUGT79 | QtoT |  377  |   385  |   D  |     D     |  match  | 377  |   385  |   D     |  D |
+
+
+```{bash, eval=F}
+# UDP initial 
 python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 29,30,143,144,291,293,345,347,365,370,387 TtoQ 
 
-<!--UDP final -->
+# UDP final 
  python3 aa_equivalence_needle.py OsUGT79_Q7XT97_TbUGT89B.out 29,30,155,160,291,293,345,347,365,370,387 TtoQ
+```
 
 # References 
